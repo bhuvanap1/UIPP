@@ -7,7 +7,7 @@ const router = express.Router();
 router
   .post('/view', async (req, res) => {
     try {
-      const post = await Post.view(req.body.content);
+      const post = await Post.view(req.body.id);
       res.send({...post});
     } catch(error) {
       res.status(401).send({ message: error.message });
@@ -16,7 +16,7 @@ router
 
   .post('/create', async (req, res) => {
     try {
-      const post = await Post.create(req.body.post);
+      const post = await Post.create(req.body.userpost,req.body.Content,req.body.likes);
       res.send({...post});
     } catch(error) {
       res.status(401).send({ message: error.message }); 
@@ -25,7 +25,7 @@ router
 
   .put('/update', async (req, res) => {
     try {
-      const post = await Post.updatePost(req.body.content);
+      const post = await Post.updatePost(req.body.id,req.body.userpost,req.body.Content,req.body.likes);
       res.send({...post});
     } catch(error) {
       res.status(401).send({ message: error.message });

@@ -1,23 +1,25 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
-  post: [String],
-  content: [String],
-  likes: [String]
+  post: {type: String},
+  content: {type: String},
+  likes: {type: String}
 })
 
 const Post = mongoose.model("Post", postSchema);
 
+async function create(userpost, Content, likes) {
 
-async function create(post) {
-  const Post = await Post.create({
-  post,
+  const newPost = await Post.create({
+    post: userpost,
+    content: Content,
+    likes: likes
   });
 
-  return post;
+  return newPost;
 }
-async function view(post) {
-    const Post = await Post.findOne(id);
+async function view(id) {
+    const post = await Post.findOne({"_id":id});
     if(!post) throw Error('post not found');
     return post;
   }
@@ -25,8 +27,9 @@ async function view(post) {
 
 
 
-async function updatePost(content) {
-  const post = await Post.updateOne({"_content": content});
+async function updatePost(id,userpost,Content,likes) {
+  const post = await Post.updateOne({"_id":id}, {$set: {post:userpost,content:Content,likes:likes}});
+ 
   return post;
 }
 
