@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
-  post: {type: String},
-  content: {type: String},
-  likes: {type: String}
+  post: {type: String, required:true},
+  content: {type: String, required:true},
+  likes: {type: String, required:true}
 })
 
 const Post = mongoose.model("Post", postSchema);
