@@ -58,15 +58,17 @@
 }
 .btnRegister{
     float: right;
-    margin-top: 10%;
+    margin-top: 30%;
     border: none;
     border-radius: 1.5rem;
     padding: 2%;
     background: #0062cc;
     color: #fff;
     font-weight: 600;
-    width: 50%;
     cursor: pointer;
+    width:192px;
+    height:48px;
+    margin-left:-106px
 }
 .register .nav-tabs{
     margin-top: 3%;
@@ -110,10 +112,14 @@
     font-weight: 400;
     width: 18%;
     cursor: pointer;
-    margin-left: 72px;
-    margin-left: 390px;
+    margin-left: 530px;
     margin-top: -48px;
     }
 .gender{
     color: white;
+    margin-left: 105px;
+    margin-top: -72px;
+}
+.fields{
+    margin-left: 185px;
 }

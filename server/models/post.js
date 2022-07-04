@@ -1,19 +1,23 @@
 const mongoose = require("mongoose");
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose);
 
 const postSchema = new mongoose.Schema({
   post: {type: String, required:true},
   content: {type: String, required:true},
-  likes: {type: String, required:true}
-})
+  likes: {type: Number, required:true},
+  userid: { type: Number, required: true},
 
+})
+postSchema.plugin(autoIncrement.plugin, { model: 'Post', field: 'postid' });
 const Post = mongoose.model("Post", postSchema);
 
-async function create(userpost, Content, likes) {
-
+async function create(userid,title, Content) {
   const newPost = await Post.create({
-    post: userpost,
+    post: title,
     content: Content,
-    likes: likes
+    likes: 0,
+    userid: userid
   });
 
   return newPost;
@@ -24,8 +28,9 @@ async function view(id) {
     return post;
   }
 
-
-
+async function getPosts(userid) {
+    return await Post.find({"userid":userid});
+  }
 
 async function updatePost(id,userpost,Content,likes) {
   const post = await Post.updateOne({"_id":id}, {$set: {post:userpost,content:Content,likes:likes}});
@@ -38,9 +43,6 @@ async function deletePost(id) {
   await Post.deleteOne({"_id": id});
 };
 
-
-
-
 module.exports = { 
-  create, view, updatePost, deletePost 
+  create, view, updatePost, deletePost, getPosts
 };

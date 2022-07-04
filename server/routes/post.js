@@ -16,10 +16,19 @@ router
 
   .post('/create', async (req, res) => {
     try {
-      const post = await Post.create(req.body.userpost,req.body.Content,req.body.likes);
-      res.send({...post});
+      const post = await Post.create(req.body.userid,req.body.post,req.body.content);
+      res.send({message: 'Posted new post'});
     } catch(error) {
       res.status(401).send({ message: error.message }); 
+    }
+  })
+
+  .post('/getposts', async (req, res) => {
+    try {
+      const posts = await Post.getPosts(req.body.userid);
+      res.send(posts);
+    } catch(error) {
+      res.status(401).send({ message: error.message });
     }
   })
 

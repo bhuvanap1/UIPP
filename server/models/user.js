@@ -1,15 +1,19 @@
 // 1. import mongoose
 const mongoose = require("mongoose");
-const bcrypt = require('bcryptjs'); 
+const bcrypt = require('bcryptjs');
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose); 
 // 2. create schema for entity
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true},
   password: { type: String, required: true},
+  token: {type: String},
   followers: [String],
   following: [String]
 })
 
 // 3. create model of schema
+userSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'userid' });
 const User = mongoose.model("User", userSchema);
 
 // 4. create CRUD functions on model
@@ -21,9 +25,9 @@ async function register(username, password) {
   const hashed = await bcrypt.hash(password, salt);
   const newUser = await User.create({
     username: username,
-    password: hashed 
+    password: hashed,
+    token: null,
   });
-
   return newUser;
 }
 
@@ -34,6 +38,15 @@ async function login(username, password) {
   const isMatch = await bcrypt.compare(password, user.password);
   if(!isMatch) throw Error('You entered a Wrong Password'); 
   return user._doc;
+}
+
+async function getToken(refreshToken) {
+  return await User.findOne({ token: refreshToken});
+}
+
+async function updateUser(whereUser, data) {
+  const user = await User.findOneAndUpdate(whereUser, {$set: data});
+  return user;
 }
 
 // UPDATE
@@ -54,5 +67,5 @@ async function getUser(username) {
 
 // 5. export all functions we want to access in route files
 module.exports = { 
-  register, login, updatePassword, deleteUser 
+  register, login, updatePassword, deleteUser, getToken, updateUser  
 };

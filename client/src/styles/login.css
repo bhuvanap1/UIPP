@@ -1,22 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
-html, body{
-    background-image: url('https://searchengineland.com/figz/wp-content/seloads/2014/08/social-network-media-data-ss-1920.jpg');
-background-size: cover;
-background-repeat: no-repeat;
-height: 750px;
+body{
 font-family: 'Numans', sans-serif;
-
 }
-
 
 .container{
 height: 100%;
 align-content: center;
 }
 
-.card{
+.card-login{
 height: 370px;
 margin-top: 130px;
 margin-bottom: auto;
