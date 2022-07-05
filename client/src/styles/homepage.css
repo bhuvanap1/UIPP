@@ -1,0 +1,12 @@
+.homepage{
+    background-image: url('http://wallup.net/wp-content/uploads/2017/03/27/198689-texture-abstract-blue.jpg');
+    height: 713px;
+}
+.content{
+    align-items: center;
+}
+.p{
+    margin-left: 250px;
+    margin-top: 200px;
+    color:rgb(40, 2, 2)
+}

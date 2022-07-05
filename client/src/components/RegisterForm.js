@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import "../styles/register.css";
 import axios from "axios";
 
+
+
 const RegisterForm = () => {
 
     const [user, setUser] = useState({
@@ -49,6 +51,7 @@ const RegisterForm = () => {
     }
   
     }
+    
     return(
         <div style={{backgroundImage: `url("https://searchengineland.com/figz/wp-content/seloads/2014/08/social-network-media-data-ss-1920.jpg")`, backgroundSize: "cover", backgroundRepeat: "no-repeat", height: "100vh"}}>
             <Nav/>
@@ -108,4 +111,5 @@ const RegisterForm = () => {
 
     );
  }
+
             export default  RegisterForm;

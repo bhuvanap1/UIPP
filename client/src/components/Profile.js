@@ -95,7 +95,11 @@ const Profile = () => {
             console.log(error);
           })
     }
-
+    const deletePost = async (e) =>{
+        await axios.delete('http://localhost:3005/post/delete', {
+            id: e.target.id
+          })
+              }
     if(isLoaded){
         getUserPosts();
         setIsLoaded(false);
@@ -103,13 +107,14 @@ const Profile = () => {
     return (
         <>
             <Navbar/>
-            <div className="container" >
+            <div className="container bg" >
                <div className="row justify-content-center">
                   <div className="col-md-8 col-sm-12 col-xl-6">
                      <div className="mt-5 mb-3">
-                        <h3 className="text-center">Username: {name}</h3>
+                        <h3 className="text-center text">Welcome {name}. How is your day going so far?</h3>
+                        <hr/>
                         <div className="row justify-content-center">
-                            <button onClick={handleShow} style={{width:"auto"}} className="btn btn-warning">create post</button>
+                            <button onClick={handleShow} style={{width:"auto"}} className="btn btn-warning">Create Post</button>
                         </div>
                      </div>
                   </div>
@@ -121,7 +126,8 @@ const Profile = () => {
                                 <div class="card-body">
                                     <h5 class="card-title">{post.post}</h5>
                                     <p class="card-text">{post.content}</p>
-                                    <p class="card-text"><small class="text-muted">{post.likes} Likes</small></p>
+                                    <p class="delete"><Button onClick={deletePost}>Delete</Button>
+</p>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +163,7 @@ const Profile = () => {
                                     as="textarea" 
                                     rows={3}
                                     value={post} 
-                                    placeholder="Post content"
+                                    placeholder="Post Content"
                                     onChange={(e) => setPost(e.target.value)} />
                                 </Form.Group>
                         </Form>

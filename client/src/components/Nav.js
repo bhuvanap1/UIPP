@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate,Link } from "react-router-dom";
 import axios from 'axios';
+import '../styles/nav.css'
+
+
 
 function Nav() {
   const [isLogged, setIsLogged] = useState(false);
@@ -35,9 +38,13 @@ function Nav() {
                   console.log(error);
               })
     }
+    
+    
   return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light navbar1">
         <div className="container-fluid">
+    
+
           <Link className="navbar-brand" to="/"><h3>My App</h3></Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -52,6 +59,7 @@ function Nav() {
                     <li className="nav-item">
                       <Link className="nav-link" to="/register">Registration</Link>
                     </li>
+                    
                   </>
                 }
                 {isLogged &&
@@ -70,5 +78,6 @@ function Nav() {
       </nav>
   );
 }
+
   
   export default Nav;

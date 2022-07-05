@@ -1,9 +1,18 @@
-html, body{
-    background-image: url('http://www.pixelstalk.net/wp-content/uploads/2016/06/Jungle-HD-Images.jpg');
+.bg{
+    background-image: url('https://wallup.net/wp-content/uploads/2016/01/163750-abstract-pattern-blue.jpg');
     align-items: center;
 
 }
 .postCard{
     background-color: white;
     box-shadow: 2px 3px 4px rgb(70, 62, 62);
+
 }
+.delete{
+    margin-left: 530px;
+    height:10px;
+}
+.text{
+    color:beige;
+}
+

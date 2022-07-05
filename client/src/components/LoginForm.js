@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import axios from "axios";
 import Nav from "./Nav"
 import "../styles/login.css";
@@ -16,12 +16,12 @@ const LoginForm = () => {
 		e.preventDefault();
 		var isValid = true;
 		setErrorAlert(false);
-		if(username == ''){
+		if(username === ''){
 			isValid = false;
 			setErrorAlert("Username is required");
 		}
 		
-		if(password == ''){
+		if(password === ''){
 		  isValid = false;
 		  setErrorAlert("Password is required");
 		}
