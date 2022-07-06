@@ -68,7 +68,7 @@ function Nav() {
                       <Link className="nav-link" to="/profile">Profile</Link>
                     </li>
                     <li className="nav-item">
-                      <href onClick={logout} style={{width:"auto"}} className="nav-link">Logout</href>
+                      <href onClick={logout} style={{width:"auto"}} className="nav-link"><button class="logout">Logout</button></href>
                     </li>
                   </>
                 } 

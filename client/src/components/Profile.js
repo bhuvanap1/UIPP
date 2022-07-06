@@ -138,7 +138,7 @@ const Profile = () => {
                                 <div class="card-body">
                                     <h5 class="card-title">{post.post}</h5>
                                     <p class="card-text">{post.content}</p>
-                                    <p class="delete"><Button id={post._id} onClick={deletePost}>Delete</Button>
+                                    <p class="delete"><Button onClick={deletePost}>Delete</Button>
 </p>
                                 </div>
                             </div>
