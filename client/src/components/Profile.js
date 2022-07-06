@@ -96,14 +96,26 @@ const Profile = () => {
           })
     }
     const deletePost = async (e) =>{
+      var id=e.target.id
         await axios.delete('http://localhost:3005/post/delete', {
-            id: e.target.id
+            id: id
+        },{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(function (response) {
+            console.log(response.data);
           })
-              }
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+    }
     if(isLoaded){
         getUserPosts();
         setIsLoaded(false);
     }
+    console.log(posts)
     return (
         <>
             <Navbar/>
@@ -126,7 +138,7 @@ const Profile = () => {
                                 <div class="card-body">
                                     <h5 class="card-title">{post.post}</h5>
                                     <p class="card-text">{post.content}</p>
-                                    <p class="delete"><Button onClick={deletePost}>Delete</Button>
+                                    <p class="delete"><Button id={post._id} onClick={deletePost}>Delete</Button>
 </p>
                                 </div>
                             </div>
