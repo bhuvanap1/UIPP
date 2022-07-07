@@ -108,7 +108,7 @@ const Profile = () => {
             },
             body: JSON.stringify({ id: post._id })
         };
-        fetch('http://localhost:3001/post/delete', options)
+        fetch('http://localhost:3005/post/delete', options)
             .then(response =>response.json())
             .then(data => {
                 //console.log('Success:', data);
