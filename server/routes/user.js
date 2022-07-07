@@ -9,7 +9,7 @@ router
   .post('/login', async (req, res) => {
     try {
       const user = await User.login(req.body.username, req.body.password);
-      const userid = user.userid;
+      const userid = user._id;
       const username = user.username;
       const userData = {userid, username};
       const accessToken = jwt.sign(userData, process.env.ACCESS_SECRET,{
@@ -47,7 +47,7 @@ router
       if(!user) return res.sendStatus(403);
       jwt.verify(refreshToken, process.env.REFRESH_SECRET, (err, decoded) => {
         if(err) return res.sendStatus(403);
-        const userid = user.userid;
+        const userid = user._id;
         const username = user.username;
         const userData = {userid, username};
         const accessToken = jwt.sign(userData, process.env.ACCESS_SECRET);

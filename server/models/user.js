@@ -1,8 +1,7 @@
 // 1. import mongoose
 const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
-var autoIncrement = require('mongoose-auto-increment');
-autoIncrement.initialize(mongoose); 
+
 // 2. create schema for entity
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true},
@@ -13,7 +12,6 @@ const userSchema = new mongoose.Schema({
 })
 
 // 3. create model of schema
-userSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'userid' });
 const User = mongoose.model("User", userSchema);
 
 // 4. create CRUD functions on model
