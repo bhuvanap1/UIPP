@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from "./Nav";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { fetchData } from "../main";
 import { useNavigate } from 'react-router-dom';
 import {Modal, Form, Button} from 'react-bootstrap'
 import '../styles/profile.css'
@@ -95,22 +96,32 @@ const Profile = () => {
             console.log(error);
           })
     }
-    const deletePost = async (e) =>{
-      var id=e.target.id
-        await axios.delete('http://localhost:3005/post/delete', {
-            id: id
-        },{
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then(function (response) {
-            console.log(response.data);
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
+   
+    const deletePost = async (e,post) => {
+        e.preventDefault();
+        const options = {
+            method: 'DELETE',
+            credentials: "include",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ id: post._id })
+        };
+        fetch('http://localhost:3001/post/delete', options)
+            .then(response =>response.json())
+            .then(data => {
+                //console.log('Success:', data);
+                getUserPosts();
+                alert(data.success)
+              })
+            .catch(error => {
+                if (error.response) {
+                    alert('Post not deleted!!');
+                }
+            });;
     }
+
     if(isLoaded){
         getUserPosts();
         setIsLoaded(false);
@@ -138,7 +149,7 @@ const Profile = () => {
                                 <div class="card-body">
                                     <h5 class="card-title">{post.post}</h5>
                                     <p class="card-text">{post.content}</p>
-                                    <p class="delete"><Button onClick={deletePost}>Delete</Button>
+                                    <p class="delete"><button onClick={e=> deletePost(e, post)}>Delete</button>
 </p>
                                 </div>
                             </div>
