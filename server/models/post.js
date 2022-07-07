@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose);
 
 const postSchema = new mongoose.Schema({
   post: {type: String, required:true},
@@ -8,6 +9,7 @@ const postSchema = new mongoose.Schema({
   userid: { type: Number, required: true},
 
 })
+postSchema.plugin(autoIncrement.plugin, { model: 'Post', field: 'postid' });
 const Post = mongoose.model("Post", postSchema);
 
 async function create(userid,title, Content) {
