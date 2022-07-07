@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate,Link } from "react-router-dom";
 import axios from 'axios';
 import '../styles/nav.css'
+import {Button} from 'react-bootstrap'
+
 
 
 
@@ -65,10 +67,10 @@ function Nav() {
                 {isLogged &&
                   <>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/profile">Profile</Link>
+                      <Link className="nav-link" to="/profile"><p class="profile">Profile</p></Link>
                     </li>
                     <li className="nav-item">
-                      <href onClick={logout} style={{width:"auto"}} className="nav-link"><button class="logout">Logout</button></href>
+                      <href onClick={logout} style={{width:"auto"}} className="nav-link"><p class="logout"><Button>Logout</Button></p></href>
                     </li>
                   </>
                 } 

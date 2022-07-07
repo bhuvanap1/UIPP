@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from "./Nav";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { fetchData } from "../main";
 import { useNavigate } from 'react-router-dom';
 import {Modal, Form, Button} from 'react-bootstrap'
 import '../styles/profile.css'
